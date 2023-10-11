@@ -1,12 +1,33 @@
-﻿<Window x:Class="MvvmProjUPD.MainWindow"
+﻿<Window x:Class="MvvmProjUPD.MVVM.Views.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:MvvmProjUPD"
+        xmlns:local="clr-namespace:MvvmProjUPD.MVVM.Views.Pages"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:vm="clr-namespace:MvvmProjUPD.MVVM.ViewModels"
+        xmlns:view="clr-namespace:MvvmProjUPD.MVVM.Views.Pages"
+        Icon="/Static/icon.ico"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="PetShop" Height="600" Width="950">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding NavigateToLoginPageCommand}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
     <Grid>
-
+        <ContentPresenter Grid.Row="0" Grid.Column="0" Content="{Binding Navigation.CurrentView}">
+            <ContentPresenter.Resources>
+                <DataTemplate DataType="{x:Type vm:LoginViewModel }">
+                    <view:LoginPage/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type vm:ShopViewModel }">
+                    <view:ShopPage/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type vm:ProfileViewModel }">
+                    <view:ProfilePage/>
+                </DataTemplate>
+            </ContentPresenter.Resources>
+        </ContentPresenter>
     </Grid>
 </Window>

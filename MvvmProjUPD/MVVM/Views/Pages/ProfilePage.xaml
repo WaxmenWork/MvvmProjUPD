@@ -1,0 +1,38 @@
+﻿<UserControl x:Class="MvvmProjUPD.MVVM.Views.Pages.ProfilePage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MvvmProjUPD.MVVM.Views.Pages"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="950" FontFamily="Comic Sans MS">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.645*"/>
+            <ColumnDefinition Width="0.355*"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" FontWeight="Bold" FontSize="26" Text="{Binding UserDisplayName}"/>
+        <Button Command="{Binding NavigateToShopPageCommand}"  Content="Назад" Grid.Column="2" VerticalAlignment="Center" Width="75" Height="40" HorizontalAlignment="Right" Margin="0 0 12 0"/>
+
+        <StackPanel Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" Width="200">
+            <TextBlock Text="Имя пользователя:" />
+            <TextBox Text="{Binding CurrentUser.UserName, UpdateSourceTrigger=PropertyChanged}" IsEnabled="False"/>
+        </StackPanel>
+
+        <DataGrid ItemsSource="{Binding CurrentUser.Orders}" Grid.ColumnSpan="1" Grid.Row="3" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Статус заказа" Binding="{Binding OrderStatus}" />
+                <DataGridTextColumn Header="Дата доставки" Binding="{Binding OrderDeliveryDate}" />
+                <DataGridTextColumn Header="ID пункта самовывоза" Binding="{Binding OrderPickupPointID}" />
+                <DataGridTextColumn Header="Дата создания заказа" Binding="{Binding OrderCreateDate}" />
+                <DataGridTextColumn Header="Код получения" Binding="{Binding ReceiveCode}" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+    </Grid>
+</UserControl>

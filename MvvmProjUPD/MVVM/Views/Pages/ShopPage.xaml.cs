@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace MvvmProjUPD.MVVM.Views
+namespace MvvmProjUPD.MVVM.Views.Pages
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Логика взаимодействия для ShopPage.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class ShopPage : UserControl
     {
-        public MainWindow()
+        public ShopPage()
         {
             InitializeComponent();
         }
