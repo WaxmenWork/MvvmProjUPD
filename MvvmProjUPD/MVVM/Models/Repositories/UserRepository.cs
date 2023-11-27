@@ -29,7 +29,7 @@ namespace MvvmProjUPD.MVVM.Models.Repositories
 
         public bool AuthenticateUser(NetworkCredential credential)
         {
-            return _context.Users.Any(user => user.UserLogin == credential.UserName && user.UserPassword == credential.Password);
+            return _context.Users.Include(user => user.Orders).Include(user => user.UserRole).Any(user => user.UserLogin == credential.UserName && user.UserPassword == credential.Password);
         }
 
         public void Add(User user)
